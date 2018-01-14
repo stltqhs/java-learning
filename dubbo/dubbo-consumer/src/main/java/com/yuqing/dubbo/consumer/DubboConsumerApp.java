@@ -1,14 +1,18 @@
 package com.yuqing.dubbo.consumer;
 
 import com.yuqing.dubbo.service.DemoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Hello world!
  *
  */
-public class DubboConsumerApp
-{
+public class DubboConsumerApp {
+
+    private static final Logger logger = LoggerFactory.getLogger(DubboConsumerApp.class);
+
     public static void main( String[] args )
     {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
@@ -18,6 +22,6 @@ public class DubboConsumerApp
 
         DemoService demoService = (DemoService) applicationContext.getBean("demoService");
 
-        System.out.println(demoService.hello());
+        logger.debug("invoke hello() and return {}", demoService.hello());
     }
 }
