@@ -1,4 +1,4 @@
-package com.yuqing.dubbo;
+package com.yuqing.dubbo.provider;
 
 /**
  * Hello world!
