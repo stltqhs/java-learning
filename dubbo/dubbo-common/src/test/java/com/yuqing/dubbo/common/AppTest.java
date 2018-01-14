@@ -1,4 +1,4 @@
-package com.yuqing.dubbo.consumer;
+package com.yuqing.dubbo.common;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

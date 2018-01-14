@@ -13,6 +13,13 @@
   <name>dubbo-consumer</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
+    <dependency>
+      <groupId>com.yuqing.dubbo.common</groupId>
+      <artifactId>dubbo-common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
