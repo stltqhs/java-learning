@@ -11,5 +11,6 @@
   <modules>
     <module>java-se</module>
     <module>dubbo</module>
+    <module>elasticsearch</module>
   </modules>
 </project>
