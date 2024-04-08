@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -16,9 +17,7 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Threads;
 import org.openjdk.jmh.annotations.Warmup;
-import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.infra.Blackhole;
-import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
@@ -30,23 +29,18 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
  */
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 3, time = 1)
-@Measurement(iterations = 5, time = 5)
+@Measurement(iterations = 1, time = 500)
 @Threads(1)
 @Fork(1)
 @State(value = Scope.Benchmark)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-public class JsonBenchmark {
-
-  @Param(value = {"0", "1", "2", "3"})
-  private int index;
+public class JsonBenchmark2 {
 
   private static Map<String, Object>[] arr = prepareData();
 
-  private static Gson gson = new Gson();
-
   public static void main(String[] args) throws RunnerException {
     Options opt = new OptionsBuilder()
-        .include(JsonBenchmark.class.getSimpleName()).build();
+        .include(JsonBenchmark2.class.getSimpleName()).build();
     new Runner(opt).run();
   }
 
@@ -86,12 +80,7 @@ public class JsonBenchmark {
   }
 
   @Benchmark
-  public void testGsonStringify(Blackhole blackhole) {
-    blackhole.consume(gson.toJson(arr[index]));
-  }
-
-  @Benchmark
   public void testFastjsonStringify(Blackhole blackhole) {
-    blackhole.consume(JSON.toJSONString(arr[index]));
+    blackhole.consume(JSON.toJSONString(arr[3]));
   }
 }
